@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        .invisible{
+            display:none
+        }
+        #app{
+            font-family: 'Quicksand', sans-serif;
+            background-color: #202020;
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        .flexing{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .test-border{
+            border: 3px solid black;
+        }
+        .auto-margin{
+            margin: 0 auto;
+        }
+        #logo{
+            font-size: 2vw;
+            font-weight: 600;
+            color: white
+        }
+        #navbar{
+            padding-top: 2%
+        }
+        #dark-mode{
+            background-color: white;
+            display: block;
+            width: 1.2em;
+            height: 2.4em;
+            border-bottom-left-radius: 4em;
+            border-top-left-radius: 4em;
+            cursor: pointer
+        }
+        .emphasize-color{
+            color: #1E90FF;
+        }
+        .underline{
+            text-decoration: underline
+        }
+
+        #navigation-bar{
+            flex-direction: column;
+            height: 60vh;
+            position: absolute;
+            top: 20%;
+            left: 2%;
+            font-size: 2vw;
+        }
+        .nav-item{
+            cursor: pointer;
+            margin-bottom: 10%;
+            color: white;
+            transition: 1s ease;
+        }
+        .nav-item:hover{
+            transition: 1s ease;
+            transform: scale(1.3);
+            color: #1E90FF;  
+        }
+        
+        #greetings-section{
+            font-size: 4vw;
+            color: white;
+            padding: 6% 5%;
+        }
+        #learn-more {
+            display: inline-block;
+            background-color: white;
+            color: #202020;
+            font-size: 2.5vw;
+            padding: 0 3%;
+            cursor: pointer;
+            transition: 0.5s ease-in;
+            animation: breathing 5s ease-out infinite normal;
+        }
+        #learn-more:hover {
+            background-color: #404040;
+            color: white;
+            transition: 0.5s ease-in;
+        }
+        @-webkit-keyframes breathing {
+            0% {
+                -webkit-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+
+            25% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            60% {
+                -webkit-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+
+            100% {
+                -webkit-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+        }
+
+        #about-section{
+            color: white;
+            padding: 3% 0;
+        }
+        #name{
+            font-size: 3.5vw;
+        }
+        .about-text{
+            flex-direction: column; 
+            width:40%; 
+            align-items:flex-start;
+            font-size: 1.5vw;
+        }
+        .about-text div{
+            border-left: 0.3vw solid white;
+            padding: 4%;
+        }
+        #avatar-holder{
+            background-color: white;
+            width:15%;
+            padding: 1%;    
+        }
+
+        #work-section{
+            padding: 5% 2%;
+        }
+        .work-item{
+            width: 45%;
+            height: 60vh;
+            border: 0.2em solid white;
+            color: white;
+            padding: 2% 3% 3% 3%;
+            margin-bottom: 9%;
+            cursor: pointer;
+            transition: 1s ease;
+            perspective: 1000px;
+        }
+        
+        /*Flip*/
+        .item-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .work-item:hover .item-inner {
+            transform: rotateY(180deg);
+        }
+        .item-front, .item-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+        }
+        .item-front {
+            color: white;
+        }
+        .item-back {
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1.5vw;
+        }
+        /*End flip*/
+
+        /*.work-item:hover{
+            transition: 1s ease;
+            transform: scale(1.05);
+            border-color: #404040;
+        }*/
+        .first-p{
+            font-size: 2.3vw;
+            font-weight: 600;
+            height: 33%;
+            justify-content: flex-start;
+        }
+        .first-p img {
+            width: 30%;
+            margin-right: 5%
+        }
+        .second-p{
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.5vw;
+            width: 100%;
+            height: 23%;
+        }
+        .third-p{
+            font-size: 1.5vw;
+            height: 33%;
+        }
+        .item-back h3 {
+            text-decoration: underline;
+            color:#404040;
+        }
+        .project-item {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start
+        }
+        .project-item{
+            text-align: left
+        }
+
+        #education-section{
+            color: white;
+            padding: 3%;
+            align-items: flex-start
+        }
+        #edu-part{
+            width: 50%;
+            margin-right:5%
+        }
+        .edu-item img{
+            width: 40%;
+            margin-right: 5%
+        }
+        .edu-item{
+            margin-bottom: 7%;
+            background-color: rgba(64, 64, 64, 0.7);
+            padding: 5%;
+            /*box-shadow: 12px 12px 5px 1px black;*/
+            font-size: 1.1vw;
+            transition: 1s ease;
+        }
+        .edu-item:hover{
+            transition: 1s ease;
+            transform: scale(1.1)
+        }
+        .edu-item div{
+            width: 60%
+        }
+        .edu-item div h3{
+            color: #1E90FF;
+        }
+        #languages-part{
+            background-color: rgba(64, 64, 64, 0.7);
+            padding: 5%;
+            /*box-shadow: 12px 12px 5px 1px black;*/
+            width: 45%;
+            flex-direction: column;
+            align-items: center;
+        }
+        .language-item{
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 10%
+
+        }
+
+        #skills-section{
+            color: white;
+            padding: 3%;
+            align-items: flex-start
+        }
+        .divider{
+            height: 80vh !important;
+        }
+        .skills-col{
+            flex-direction: column;
+            font-size: 2vw;
+            width: 40%;
+        }
+        .skills-col h2{
+            color: #404040;
+            text-decoration: underline
+        }
+        
+        #coding-section{
+            color: white;
+            padding: 3%;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative
+        }
+        .coding-col{
+            margin-top: 10%;
+            cursor: pointer;
+            width: 100%;
+            position: relative;
+        }
+        .coding-item{
+            font-size: 4.5vw;
+            margin-left: 5%;
+            transition: 1s ease;
+        }
+        .coding-item:hover{
+            transition: 1s ease;
+            transform: scale(1.1);
+            color: #1E90FF
+        }
+        #side-heading{
+            transform: rotate(-90deg);
+            position: absolute;
+            color: #404040;
+            font-size: 3vw;
+            left: -7vw;
+            top: 17vw
+        }
+        #under-heading{
+            position: absolute;
+            color: #404040;
+            font-size: 11vw;
+            letter-spacing: 0.5em;
+
+        }
+
+        #contact-section{
+            color: white;
+            padding: 3%;
+        }
+        #contact-section form {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 50%
+        }
+        #contact-section form input{
+            width: 100%;
+            font-size: 2vw;
+            padding: 1%
+        }
+        #contact-section form label{
+            font-size: 2vw;
+            margin-top: 5% 
+        }
+        #contact-section form textarea{
+            width: 100%;
+            height: 20vh;
+            resize: none;
+
+        }
+        #submit{
+            width: fit-content;
+            margin-top: 5%;
+            border: none
+        }
+        #submit:hover {
+            background-color: #404040;
+            color: white;
+            transition: 0.5s ease-in;
+        }
+        #envelope{
+            width:35%;
+            font-size:20vw
+        }
+
+
+        .slide-fade-enter-active {
+            transition: all 1s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-to{
+            transform: translateX(100px);
+            opacity: 0;
+        }
+
+        .fade-enter-active {
+            transition: all 1s ease;
+        }
+        .fade-leave-active {
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .fade-enter, .fade-leave-to{
+            opacity: 0;
+        }
+
+        /*Responsive*/
+        @media screen and (min-width: 768px) {
+            #header-submessage{
+                width: 84%;
+            }
+            #solutions-text{
+                width: 80%;
+            }
+            #trusted-desc{
+                width: 80% !important
+            }
+        }
+        @media screen and (min-width: 992px) {
+            #header-submessage{
+                width: 74%;
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            #header-submessage{
+                width: 74%;
+            }
+        }
+        @media screen and (min-width: 1400px) {
+            #header-submessage{
+                width: 64%;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <section id="app" style='overflow-x: hidden'>
+        <div class='container' style='overflow-x: hidden;'>
+            <div class='row flexing' id='navbar'>
+                <div id='logo'>
+                    <p>{{appName}}</p>
+                </div>
+                <div id='dark-mode'>&nbsp;</div>
+            </div>
+            <transition name="fade">
+                <nav-bar v-if='introPassed'></nav-bar>
+            </transition>
+            <transition name="slide-fade" :duration="{ enter: 1000, leave: 500 }" mode="out-in">
+                <greet-text v-if='currentSection === "greetings-section"'></greet-text>
+                <about-section v-if='currentSection === "about-section"'></about-section>
+                <work-section v-if='currentSection === "work-section"' :workingPlaces=workingPlaces></work-section>
+                <education-section v-if='currentSection === "edu-section"' :eduplaces=eduPlaces :languages=languages></education-section>
+                <skills-section v-if='currentSection === "skills-section"' :skills=skills :activities=activities></skills-section>
+                <coding-section v-if='currentSection === "coding-section"' :front=coding.front :back=coding.back></coding-section>
+                <contact-section v-if='currentSection === "contact-section"'></contact-section>
+            </transition>  
+        </div>
+        
+    </section>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.js" integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8=" crossorigin="anonymous"></script>
+
+    <!--FA-->
+    <script src="https://kit.fontawesome.com/60b19028d6.js" crossorigin="anonymous"></script>
+    
+    <!--Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        var navPannel = Vue.component('nav-bar', {
+            template: `<div id='navigation-bar' class='flexing'>
+                            <div class='nav-item' @click='switchSection("about-section")'>
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class='nav-item' @click='switchSection("work-section")'>
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class='nav-item' @click='switchSection("edu-section")'>
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class='nav-item' @click='switchSection("skills-section")'>
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class='nav-item' @click='switchSection("coding-section")'>
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class='nav-item' @click='switchSection("contact-section")'>
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                        </div>`,
+            methods: {
+                switchSection: function(section){
+                    app.currentSection = section
+                }
+            }
+        });
+
+        var greetText = Vue.component('greet-text', {
+            template: `<div class='row flexing' id='greetings-section'>
+                            <div>
+                                <p>Hello...</p>
+                                <p>My name is Vlad...</p>
+                                <p>And I want to make this world a better place <i class="fas fa-globe-americas emphasize-color"></i></p>
+                                
+                                <div id='learn-more' @click='toAboutSection'>learn more</div>
+                            </div>
+                        </div>`,
+            methods: {
+                toAboutSection: function(){
+                    app.currentSection = 'about-section'
+
+                    app.introPassed = true
+                }
+            }
+        });
+
+        var aboutSection = Vue.component('about-section', {
+            template: `<div class='row flexing' id='about-section'>
+                            <div id='avatar-holder' style='width:40%'>
+                                <img src="CVimg.jpg" class='img-fluid'>
+                            </div>
+                            <div class='flexing about-text'>
+                                <p id='name'>Ivanyk <span class='emphasize-color'>Vladyslav</span></p>
+                                <div>
+                                    <p class='underline emphasize-color'>Age:</p> <p> 24</p>
+                                    <p class='underline emphasize-color'>Personal Features:</p>
+                                    <p>
+                                        responsible, easy-going, study fast, 
+                                        open to the people, honest, cleaver, full 
+                                        of energy, tolerant, versatile
+                                    </p>
+                                    <p class='underline emphasize-color'>Hobbies and interests:</p>
+                                    <p>
+                                        graphic designing, photographing, reading, cinematograph, 
+                                        traveling, music, nature sciences, sport, 
+                                        foreign languages, philosophy, IT technologies
+                                    </p>
+                                </div>
+                            </div>
+                        </div>`,
+            methods: {
+            }
+        });
+
+        var workingExperienceSection = Vue.component('work-section', {
+            props: ['workingplaces'],
+            template: `<div class='row flexing' id='work-section'>
+                            <work-item v-for='item in workingplaces' :item='item'></work-item>
+                        </div>`
+        });
+
+        
+        var workItem = Vue.component('work-item', {
+            props: ['item'],
+            template: `<div class='work-item '>
+                        <div class='item-inner'>
+                            <div class='item-front'>
+                                <div class='flexing first-p'>
+                                    <img class='img-fluid' :src='item.logo'>
+                                    <p>{{item.title}}</p>
+                                </div>
+                                <br>
+                                <div class='flexing second-p'>
+                                    <p>{{item.timePeriod}}</p>
+                                </div>
+                                <br>
+                                <div class='third-p'>
+                                    <div v-for="duty in item.duties" class='flexing'>&#9655 {{duty}}</div>
+                                </div>
+                            </div>
+                            <div class='item-back'>
+                                <h3>Projects</h3>
+                                
+                                <div v-for="project in item.projects" class='project-item flexing'>
+                                    <h5>&#8226; {{project.title}}</h5>
+                                    <p><a :href="project.link" target='_blank'>{{project.link}}</a></p>
+                                    <p style="font-size: 1vw">{{project.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+        });
+
+        var eduSection = Vue.component('education-section', {
+            props: ['eduplaces', 'languages'],
+            template: `<div class='row flexing' id='education-section'>
+                            <div id='edu-part'>
+                                <div v-for="institution in eduplaces" class='flexing edu-item'>
+                                    <img :src='institution.logo' class='img-fluid'>
+                                    
+                                    <div class='flexing' style='flex-direction: column; align-items: flex-start;'>
+                                        <h3>{{institution.title}}</h3>
+                                        <p><i class="far fa-compass"></i> {{institution.location}} ({{institution.timePeriod}})</p>
+                                        <p><span class='underline'>Degree:</span> {{institution.degree}}</p>
+                                        <p><span class='underline'>Field:</span> {{institution.field}}</p>
+                                        <p><span class='underline'>Specialization:</span> {{institution.specialization}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id='languages-part' class='flexing'>
+                                <h2 class='underline'>Languages</h2>
+                                <br>
+                                <div v-for='language in languages' class='language-item'>
+                                    <h3>{{language.title}}</h3>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar" :style="{width: language.score + '%'}" :aria-valuenow="language.score" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>`
+        });
+
+        var skillsAndAchievementsSection = Vue.component('skills-section', {
+            props: ['skills', 'activities'],
+            template: `<div class='row flexing' id='skills-section'>
+                            <div id='skills' class='flexing skills-col'>
+                                <h2>Skills</h2>
+                                <br>
+                                <div style='width: 100%'>
+                                    <p v-for='skill in skills'><span class='emphasize-color'>&#9655</span> {{skill}}</p>
+                                </div>
+                            </div>
+                            <img class='img-fluid divider' src='divider.svg'>
+                            <div id='activity' class='flexing skills-col'>
+                                <h2>Activities</h2>
+                                <br>
+                                <div style='width: 100%'>
+                                    <p v-for='activity in activities'><span class='emphasize-color'>&#9655</span> {{activity}}</p>
+                                </div>
+                            </div>
+                        </div>`
+        });
+
+        var codingSection = Vue.component('coding-section', {
+            props: ['front', 'back'],
+            template: `<div class='row flexing' id='coding-section'>
+                            <div id='under-heading'>TECH <br>STACK</div>
+                            <div class='flexing coding-col'>
+                                <div v-for="el in front" class='coding-item'>
+                                    
+                                    <i v-if='el.icon' :class="el.icon" :title="el.name"></i>
+                                    <p v-else style='font-size: 3vw;'>{{el.name}}</p>
+                                </div>
+                            </div>
+                            <div class='flexing coding-col'>
+                                <div v-for="el in back" class='coding-item'>
+                                    <i v-if='el.icon' :class="el.icon" :title="el.name"></i>
+                                    <p v-else style='font-size: 3vw;'>{{el.name}}</p>
+                                </div>
+                            </div>
+                        </div>`
+        });
+
+        var contactSection = Vue.component('contact-section', {
+            data: function () {
+                return {
+                    sent: false
+                }
+            },
+            template: `<div class='row flexing' id='contact-section'>
+                            <form class='gform' method='POST' data-email='vlad.ivanyk@gmail.com' action="https://script.google.com/macros/s/AKfycbwD5SGYCpkR_xR9ZoKLkahgKuRSKckgIqQwUdef6Q/exec">
+                                <div>
+                                    <label for="name-form">Name:</label><br>
+                                    <input type="text" id="name-form" name="name" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label for="email-form">Email:</label><br>
+                                    <input type="text" id="email-form" name="email" placeholder="Your email">
+                                </div>
+                                <div>
+                                    <label for="">Message:</label>
+                                    <textarea name='message'></textarea>
+                                </div>
+                                    
+                                <input id='submit' type='submit' value="Submit" @click="sent=true">
+                            </form>
+                            <div id='envelope' class='flexing'>
+                                <i class='fas' :class="{'fa-envelope-open-text': sent===false, 'fa-envelope': sent}"></i>
+                            </div> 
+                        </div>`
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                appName: 'curriculum vitae',
+                workingPlaces: [
+                    {
+                        logo: 'logo-img-white.png',
+                        title: 'STERA GLOBAL',
+                        timePeriod: 'July 2019 - now',
+                        duties: ['Front-end Developer', 'Back-end Developer', 'Tech Consultant'],
+                        projects: [
+                            {
+                                title: 'Profit Partnerships',
+                                link: 'http://dev.profitpartnerships.com/',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                            },
+                            {
+                                title: 'STERA GLOBAL',
+                                link: 'https://stera.global/',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                            },
+                        ]
+                    },
+                    {
+                        logo: 'ayulla_logo.png',
+                        title: 'AYULLA',
+                        timePeriod: 'Feb 2018 - now',
+                        duties: ['Front-end Developer', 'Back-end Developer', 'Remote Job'],
+                        projects: [
+                            {
+                                title: 'Tapdesk',
+                                link: 'http://tapdesk.io/',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                            },
+                        ]
+                    },
+                    {
+                        logo: '',
+                        title: 'CROWBOTICS',
+                        timePeriod: 'Dec 2017 – Apr 2019',
+                        duties: ['Full Stack Web Developer', 'Development of web applications', 'Remote Job'],
+                        projects: []
+                    },
+                    {
+                        logo: '',
+                        title: 'TropicPic',
+                        timePeriod: 'Jan 2017 - Nov 2019',
+                        duties: ['Social Media Marketing', 'Communication with foreign clients', 'Promotion through social networks', 'Different advertising campaigns'],
+                        projects: [
+                            {
+                                title: 'Tapdesk',
+                                link: 'http://tapdesk.io/',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                            },
+                        ]
+                    },
+                    {
+                        logo: '',
+                        title: 'Dunkin Donuts ',
+                        timePeriod: 'Jul 2015 - Sep 2015',
+                        duties: ['Work & Travel programm', 'Get Manager internships'],
+                        projects: [
+                            {
+                                title: 'Tapdesk',
+                                link: 'http://tapdesk.io/',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                            },
+                        ]
+                    },
+                ],
+                eduPlaces: [
+                    {
+                        title: 'Collegium Civitas',
+                        timePeriod: '2013-2016',
+                        location: 'Warsaw, Poland',
+                        field: 'International Relations',
+                        specialization: 'International Bussiness',
+                        logo: 'civitas_logo.png',
+                        degree: 'Bachelor'
+                    },
+                    {
+                        title: 'WSB',
+                        timePeriod: '2017-2019',
+                        location: 'Katowice, Poland',
+                        field: 'Managment',
+                        specialization: 'Project Managment',
+                        logo: 'wsb_logo.png',
+                        degree: 'Master'
+                    }
+                ],
+                languages: [
+                    {
+                        title: 'Ukranian',
+                        score: 100
+                    },
+                    {
+                        title: 'Russian',
+                        score: 100
+                    },
+                    {
+                        title: 'English',
+                        score: 85
+                    },
+                    {
+                        title: 'Polish',
+                        score: 50
+                    },
+                ],
+                skills: ['Mediation and Arbitration', 'Academic Writing', 'Study Fast', 'Analytical Thinking', 'Teamwork', 'Advanced user of PC'],
+                activities: ['Course of English and Polish languages', 'Coding courses on Udemy, SoloLearn, KhanAcademy', 'Work and Travel USA (Florida, USA)', 'Sport activity (boxing, judo, swimming, basketball etc.)', 'Shoot in BBC’s history film “The Passing Bell”'],
+                coding: {
+                    front: [{icon: 'fab fa-html5', name: 'HTML'}, {icon: 'fab fa-css3-alt', name: 'CSS'}, {icon: 'fab fa-js', name: 'JS'}, {icon: 'fab fa-bootstrap', name: 'Bootstrap'}, {icon: '', name: 'jQuery'}, {icon: '', name: 'Ajax'}, {icon: 'fab fa-vuejs', name: 'VUE.JS'}],
+                    back: [{icon: 'fab fa-python', name: 'Python'}, {icon: '', name: 'Django'}, {icon: '', name: 'Django REST'}, {icon: 'fab fa-aws', name: 'AWS'}, {icon: '', name: 'Heroku'},]
+                },
+                currentSection: 'greetings-section',
+                introPassed: false,
+            }
+
+        })
+
+        $(document).ready(function(){
+            $('#languages-part').css('height', $('#edu-part').css('height'))
+        })
+    </script>
+
+    <!--AJAX-->
+    <script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>
+
+</body>
+</html>
